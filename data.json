@@ -1,0 +1,20 @@
+{
+  version: 1,
+  stations: [
+    {
+      title: "Радио Новая Жизнь",
+      streams: [
+        {
+          bitrate: 66,
+          url: 'http://nradio.net/nlradio'
+        }
+      ],
+      genres: [
+        'pop',
+        'rock',
+        'jazz',
+        'show'
+      ]
+    }
+  ]
+}
