@@ -3,11 +3,11 @@
   stations: [
     {
       title: "Радио Новая Жизнь",
+      icon: 'nlradio.png',
       streams: [
         {
           bitrate: 66,
-          url: 'http://nradio.net/nlradio',
-          icon: 'nlradio.png'
+          url: 'http://nradio.net/nlradio'
         }
       ],
       genres: [
