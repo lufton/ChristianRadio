@@ -6,7 +6,8 @@
       streams: [
         {
           bitrate: 66,
-          url: 'http://nradio.net/nlradio'
+          url: 'http://nradio.net/nlradio',
+          icon: 'nlradio.png'
         }
       ],
       genres: [
