@@ -17,7 +17,8 @@
         "show"
       ],
       "languages": [
-        "ru"
+        "ru",
+        "en"
       ]
     },
     "jtradio": {
@@ -46,7 +47,8 @@
       ],
       "languages": [
         "ru",
-        "uk"
+        "uk",
+        "en"
       ]
     }
   },
