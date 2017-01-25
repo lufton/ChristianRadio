@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "stations": [
-    {
+  "stations": {
+    "nlradio": {
       "title": "Радио Новая Жизнь",
-      "icon": "nlradio.png",
+      "site": "http://nlradio.net/",
       "streams": [
         {
           "bitrate": 66,
@@ -17,11 +17,11 @@
         "show"
       ]
     }
-  ],
+  },
   "genres": {
+    "jazz": "Джаз",
     "pop": "Поп",
     "rock": "Рок",
-    "jazz": "Джаз",
     "show": "Шоу"
   }
 }
