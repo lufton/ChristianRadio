@@ -3,8 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Christian Radio</title>
+    <script src="jquery-3.1.1.min.js"></script>
+    <script src="isotope.pkgd.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="popup.js"></script>
 </head>
-<body>
-
+<body style="width: 800px;">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Жанр</label>
+            <div class="col-sm-10">
+                <div id="genres" class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default active"><input type="radio" name="genre" value="*" checked="checked">Все</label>
+                    <label class="btn btn-default"><input type="radio" name="genre" value="rock">Рок</label>
+                    <label class="btn btn-default"><input type="radio" name="genre" value="jazz">Джаз</label>
+                </div>
+            </div>
+        </div>
+        <ul id="stations">
+            <li class="first">Радио Новая Жизнь 1</li>
+            <li class="first second">Радио Новая Жизнь 2</li>
+            <li class="third">Радио Новая Жизнь 3</li>
+        </ul>
+    </form>
 </body>
 </html>
