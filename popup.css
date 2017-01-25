@@ -31,10 +31,10 @@ form {
     padding: 5px;
     -webkit-transition-property: top, bottom;
     -webkit-transition-duration: 0.3s;
+    background-color: rgba(255,255,255,0.5);
 }
 
-.station:hover span, .station span:hover {
-    background-color: rgba(255,255,255,0.5);
+.station:hover span, .station span:hover, .station.active span {
     bottom: 0;
 }
 
@@ -102,6 +102,6 @@ form {
     box-shadow: inset 2px 0 0 0 #f9f9f9;
 }
 
-.station:hover .play, .play:hover {
+.station:hover .play, .play:hover, .active .play {
     opacity: 1;
 }
