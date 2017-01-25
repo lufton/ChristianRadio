@@ -1,3 +1,7 @@
+form {
+    height: 400px;
+}
+
 .station {
     list-style: none;
     display: inline-block;

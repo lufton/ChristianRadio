@@ -4,11 +4,16 @@
 jQuery(function($) {
     var backPage = chrome.extension.getBackgroundPage();
     $('#stations').isotope({
-        itemSelector: '.station',
+        itemSelector: 'li',
         layoutMode: 'fitRows'
     });
     $('#genres').on('change', 'input', function() {
         backPage.currentGenre = this.value;
+        $('#stations').isotope({filter: this.value});
+    });
+    $('#languages').on('change', 'input', function() {
+        backPage.currentLanguage = this.value;
+        $('#stations').isotope({filter: this.value});
     });
     $('#stations').on('click', '.station', function() {
         backPage.currentStation = this.id;
@@ -22,24 +27,26 @@ jQuery(function($) {
 
         if (backPage && backPage.data && backPage.data.genres) {
             $.each(backPage.data.genres, function (genre, title) {
-                $('#genres').append('<label class="btn btn-default"><input type="radio" name="genre" value="' + genre + '">' + title +'</label>');
+                $('#genres').append('<label class="btn btn-default"><input type="radio" name="genre" value=".genre-' + genre + '">' + title +'</label>');
             });
         }
         $('#genres input[value="*"]').click();
         $('#genres input[value="' + currentGenre + '"]').click();
     };
     var populateStations = function() {
-        $('#stations li').remove();
+        //$('#stations li').remove();
         if (backPage && backPage.data && backPage.data.stations) {
-            var stations = [];
             $.each(backPage.data.stations, function(id, station) {
-                stations.push($('<li id="' + id + '" class="station ' + (id==backPage.currentStation?'active ':'') + $.map(station.genres, function(genre) { return 'genre-' + genre; }).join(' ') + '">' +
+                $station = $('<li id="' + id + '" class="station ' +
+                    (id==backPage.currentStation?'active ':'') +
+                    $.map(station.genres, function(genre) { return 'genre-' + genre; }).join(' ') + ' ' +
+                    $.map(station.languages, function(language) { return 'lang-' + language; }).join(' ') + '">' +
                     '<img src="icons/' + id + '.png" class="img-rounded" />' +
                     '<span>' + station.title + '</span>' +
                     '<div class="play"></div>' +
-                    '</li>'));
+                    '</li>');
+                $('#stations').append($station).isotope('appended', $station);
             });
-            $('#stations').append(stations).isotope('appended', stations);
         }
     };
 
