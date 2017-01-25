@@ -16,6 +16,31 @@
         "jazz",
         "show"
       ]
+    },
+    "jtradio": {
+      "title": "JT RADIO",
+      "site": "https://jtradio.pro/",
+      "streams": [
+        {
+          "bitrate": 192,
+          "url": "https://jtradio.net/live192"
+        },
+        {
+          "bitrate": 128,
+          "url": "https://jtradio.net/live128"
+        },
+        {
+          "bitrate": 64,
+          "url": "https://jtradio.net/live64"
+        },
+        {
+          "bitrate": 48,
+          "url": "https://jtradio.net/live48"
+        }
+      ],
+      "genres": [
+
+      ]
     }
   },
   "genres": {

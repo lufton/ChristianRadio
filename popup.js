@@ -4,7 +4,8 @@
 jQuery(function($) {
     var backPage = chrome.extension.getBackgroundPage();
     $('#stations').isotope({
-        
+        itemSelector: '.station',
+        layoutMode: 'fitRows'
     });
     $('#genres').on('change', 'input', function() {
         backPage.currentGenre = this.value;
@@ -24,9 +25,14 @@ jQuery(function($) {
     var populateStations = function() {
         $('#stations li').remove();
         if (backPage && backPage.data && backPage.data.stations) {
-            $.each(backPage.data.stations, function() {
-                
-            })
+            var stations = [];
+            $.each(backPage.data.stations, function(id, station) {
+                stations.push($('<li id="' + id + '" class="station ' + $.map(station.genres, function(genre) { return 'genre-' + genre; }).join(' ') + '">' +
+                    '<img src="icons/' + id + '.png" class="img-rounded" />' +
+                    '<span>' + station.title + '</span>' +
+                    '</li>'));
+            });
+            $('#stations').append(stations).isotope('appended', stations);
         }
     };
 

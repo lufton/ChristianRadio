@@ -1,0 +1,24 @@
+.station {
+    list-style: none;
+    display: inline-block;
+    width: 96px;
+    position: relative;
+    overflow: hidden;
+}
+
+.station img {
+    width: 100%;
+    height: auto;
+}
+
+.station span {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: black;
+    background-color: rgba(255,255,255,0.5);
+    font-size: 1.2em;
+    line-height: 1em;
+}
