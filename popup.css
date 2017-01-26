@@ -1,12 +1,12 @@
 body {
     width: 752px;
-    height: 400px;
+    height: 600px;
 }
 
 #stations {
-    height: 400px!important;
+    height: 100%!important;
+    margin: 0 0 -70px 0;
     padding: 0 5px;
-    margin: 0;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -73,6 +73,10 @@ body {
 .station .description {
     display: none;
     margin-top: 2.5em;
+}
+
+.station aside {
+    overflow-y: auto;
 }
 
 .station .metadata {

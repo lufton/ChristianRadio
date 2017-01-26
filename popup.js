@@ -21,10 +21,15 @@ jQuery(function($) {
     });
     $('#stations').on('click', 'a.stream', function() {
         backPage.currentStation = $(this).data('station');
-        if ($(this).hasClass('playpause') && !backPage.paused()) backPage.pause(); else backPage.play($(this).attr('src'));
+        if ($(this).hasClass('playpause') && $(this).closest('.station').hasClass('active') && !backPage.paused()) backPage.pause(); else backPage.play(this.href);
         $('.station:not(#' + backPage.currentStation + ')').removeClass('active');
         if ($(this).hasClass('playpause')) $(this).closest('.station').toggleClass('active'); else $(this).closest('.station').addClass('active');
         return false;
+    });
+    $('#stations').on('click', '.genres button, .languages button', function() {
+        var filter = $(this).data('filter');
+        setTimeout(function() { $('#stations').isotope({filter: filter}); }, 300);
+
     });
     var populateGenres = function() {
         var currentGenre = $('#genres input:checked').val() || backPage.currentGenre;
@@ -48,10 +53,10 @@ jQuery(function($) {
             });
         }
         $('#genres input[value="*"]').click();
-        $('#genres input[value="' + currentGenre + '"]').click();
+        $('#genres input[value="' + currentLanguage + '"]').click();
     };
     var populateStations = function() {
-        //$('#stations li').remove();
+        $('#stations li').remove();
         if (backPage && backPage.data && backPage.data.stations) {
             $.each(backPage.data.stations, function(id, station) {
                 $station = $('<li id="' + id + '" class="station ' +
@@ -63,23 +68,28 @@ jQuery(function($) {
                         '<div class="form-group">' +
                             '<label>Потоки (kbps)</label>' +
                             '<div class="clear"></div>' +
-                            '<div class="btn-group btn-group-xs" data-toggle="buttons">' + $.map(station.streams, function(stream, i) { return '<a class="btn btn-' + (i>0?'default':'primary') + ' stream" src="' + stream.url + '" data-station="' + id + '">' + stream.bitrate + '</a>'; }).join('') + '</div>' +
+                            '<div class="btn-group btn-group-xs" data-toggle="buttons">' + $.map(station.streams, function(stream, i) { return '<a class="btn btn-' + (i>0?'default':'primary') + ' stream" href="' + stream.url + '" data-station="' + id + '">' + stream.bitrate + '</a>'; }).join('') + '</div>' +
                         '</div>' +
                         '<div class="form-group">' +
                             '<label>Жанры</label>' +
                             '<div class="clear"></div>' +
-                            '<div class="btn-group btn-group-xs" data-toggle="buttons">' + $.map(station.genres, function(genre) { return '<button class="btn btn-default"  data-filter=".genre-' + genre + '">' + genre + '</button>'; }).join('') + '</div>' +
+                            '<div class="btn-group-vertical btn-group-xs col-xs-12 genres">' + $.map(station.genres, function(genre) { return '<button class="btn btn-default"  data-filter=".genre-' + genre + '">' + genre + '</button>'; }).join('') + '</div>' +
                         '</div>' +
                         '<div class="form-group">' +
                             '<label>Языки</label>' +
                             '<div class="clear"></div>' +
-                            '<div class="btn-group btn-group-xs" data-toggle="buttons">' + $.map(station.languages, function(language) { return '<button class="btn btn-default"  data-filter=".lang-' + language + '">' + backPage.data.languages[language] + '</button>'; }).join('') + '</div>' +
+                            '<div class="btn-group-vertical btn-group-xs col-xs-12 languages">' + $.map(station.languages, function(language) { return '<button class="btn btn-default"  data-filter=".lang-' + language + '">' + backPage.data.languages[language] + '</button>'; }).join('') + '</div>' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label>Сайт</label>' +
+                            '<div class="clear"></div>' +
+                            '<a href="' + (station.site || '') + '" target="_blank">' + (station.site || '') + '</a>' +
                         '</div>' +
                     '</div>' +
                     '</aside>' +
                     '<h1>' + station.title + '</h1>' +
-                    '<a class="play playpause stream" data-station="' + id + '"></a>' +
-                    '<div class="description">' + station.description + '</div>' +
+                    '<a class="play playpause stream" href="' + station.streams[0].url + '" data-station="' + id + '"></a>' +
+                    '<div class="description">' + station.description || '' + '</div>' +
                     '</li>');
                 $('#stations').append($station).isotope('appended', $station);
             });
