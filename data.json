@@ -50,6 +50,27 @@
         "uk",
         "en"
       ]
+    },
+    "pwradio": {
+      "title": "Чистая волна",
+      "site": "http://purewave.ru/",
+      "streams": [
+        {
+          "bitrate": 128,
+          "url": "http://84.22.137.76:8000/myradio"
+        },
+        {
+          "bitrate": 64,
+          "url": "http://84.22.137.76:8000/pure"
+        }
+      ],
+      "genres": [
+
+      ],
+      "languages": [
+        "ru",
+        "en"
+      ]
     }
   },
   "genres": {
