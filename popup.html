@@ -11,27 +11,14 @@
     <script src="popup.js"></script>
 </head>
 <body>
+    <ul id="stations" class="col-xs-12"></ul>
     <form class="form-horizontal">
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Жанр</label>
-            <div class="col-sm-10">
-                <div id="genres" class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-primary"><input type="radio" name="genre" value="*">Все</label>
-                </div>
-            </div>
+        <div id="genres" class="btn-group col-xs-12" data-toggle="buttons">
+            <label class="btn btn-primary"><input type="radio" name="genre" value="*">Все</label>
         </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Язык</label>
-            <div class="col-sm-10">
-                <div id="languages" class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-primary"><input type="radio" name="language" value="*">Все</label>
-                    <label class="btn btn-default"><input type="radio" name="language" value=".lang-ru">Русский</label>
-                    <label class="btn btn-default"><input type="radio" name="language" value=".lang-uk">Українська</label>
-                    <label class="btn btn-default"><input type="radio" name="language" value=".lang-en">English</label>
-                </div>
-            </div>
+        <div id="languages" class="btn-group col-xs-12" data-toggle="buttons">
+            <label class="btn btn-primary"><input type="radio" name="language" value="*">Все</label>
         </div>
     </form>
-    <ul id="stations"></ul>
 </body>
 </html>
