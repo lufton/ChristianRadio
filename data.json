@@ -72,6 +72,32 @@
         "en"
       ]
     },
+    "ruworship": {
+      "title": "Ru Worship",
+      "site": "http://ruworship.ru/",
+      "streams": [
+        {
+          "bitrate": 128,
+          "url": "http://82.146.35.50:8000/radio"
+        },
+        {
+          "bitrate": 96,
+          "url": "http://82.146.35.50:8100/radio"
+        },
+        {
+          "bitrate": 64,
+          "url": "http://82.146.35.50:8090/radio"
+        }
+      ],
+      "genres": [
+        "rock",
+        "worship"
+      ],
+      "languages": [
+        "ru",
+        "en"
+      ]
+    },
     "nrtradio": {
       "title": "NRT RADIO WORSHIP",
       "site": "http://www.streamlicensing.com/stations/nrtradio/worship.html",
@@ -82,7 +108,9 @@
         }
       ],
       "genres": [
-
+        "rock",
+        "pop",
+        "worship"
       ],
       "languages": [
         "en"
