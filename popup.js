@@ -15,11 +15,11 @@ jQuery(function($) {
         backPage.currentLanguage = this.value;
         $('#stations').isotope({filter: this.value});
     });
-    $('#stations').on('click', '.station', function() {
-        backPage.currentStation = this.id;
-        if ($(this).hasClass('active')) backPage.pause(); else backPage.play();
-        $('.station:not(#' + this.id + ')').removeClass('active');
-        $(this).toggleClass('active');
+    $('#stations').on('click', '.station .play', function() {
+        backPage.currentStation = this.parentElement.id;
+        if ($(this.parentElement).hasClass('active')) backPage.pause(); else backPage.play();
+        $('.station:not(#' + backPage.currentStation + ')').removeClass('active');
+        $(this.parentElement).toggleClass('active');
     });
     var populateGenres = function() {
         var currentGenre = $('#genres input:checked').val() || backPage.currentGenre;

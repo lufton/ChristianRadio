@@ -1,11 +1,16 @@
-form {
+body {
+    width: 752px;
     height: 400px;
+}
+
+#stations {
+    height: 100%!important;
+    padding-left: 5px;
 }
 
 .station {
     list-style: none;
     display: inline-block;
-    width: 96px;
     position: relative;
     overflow: hidden;
     margin: 5px;
@@ -13,7 +18,7 @@ form {
 }
 
 .station img {
-    width: 100%;
+    width: 96px;
     height: auto;
 }
 
