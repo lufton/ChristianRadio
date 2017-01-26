@@ -71,6 +71,22 @@
         "ru",
         "en"
       ]
+    },
+    "nrtradio": {
+      "title": "NRT RADIO WORSHIP",
+      "site": "http://www.streamlicensing.com/stations/nrtradio/worship.html",
+      "streams": [
+        {
+          "bitrate": 128,
+          "url": "http://knight.wavestreamer.com:5629/Live"
+        }
+      ],
+      "genres": [
+
+      ],
+      "languages": [
+        "en"
+      ]
     }
   },
   "genres": {
