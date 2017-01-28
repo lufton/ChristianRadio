@@ -7,16 +7,20 @@
     <script src="isotope.pkgd.min.js"></script>
     <script src="bootstrap.min.js"></script>
     <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-multiselect.css">
     <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="flags.css">
+    <script src="bootstrap-multiselect.js"></script>
     <script src="popup.js"></script>
 </head>
 <body>
     <ul id="stations" class="col-xs-12"></ul>
     <form class="form-horizontal">
-        <div id="genres" class="btn-group col-xs-12 genres" data-toggle="buttons">
-            <label class="btn btn-primary"><input type="radio" name="genre" value="*">Все</label>
+        <div class="input-group btn-group">
+            <span class="input-group-addon">Жанры</span>
+            <select id="genres" multiple="multiple"></select>
         </div>
-        <div id="languages" class="btn-group col-xs-12 languages" data-toggle="buttons">
+        <div id="languages" class="btn-group btn-group-sm btn-group-justified col-xs-12 languages" data-toggle="buttons">
             <label class="btn btn-primary"><input type="radio" name="language" value="*">Все</label>
         </div>
     </form>
