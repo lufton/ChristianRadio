@@ -67,10 +67,11 @@ jQuery(function($) {
     });
     $stations.on('click', '.genres a, .languages a', function() {
         var filter = $(this).data('filter');
-        $genres.multiselect('deselectAll');
-        $languages.multiselect('deselectAll');
-        $genres.multiselect('select', filter);
-        //setTimeout(function() { $stations.isotope({filter: filter}); }, 300);
+        $genres.multiselect('deselectAll', false); $genres.multiselect('refresh');
+        $languages.multiselect('deselectAll', false); $languages.multiselect('refresh');
+        if ($(this).closest('.genres').length) $genres.multiselect('select', filter);
+        if ($(this).closest('.languages').length) $languages.multiselect('select', filter);
+        setTimeout(function() { updateFilters(); }, 300);
     });
     var issueBody = function(station, issue) {
         return '' +
