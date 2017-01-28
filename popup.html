@@ -15,13 +15,30 @@
 </head>
 <body>
     <ul id="stations" class="col-xs-12"></ul>
-    <form class="form-horizontal">
-        <div class="input-group btn-group">
-            <span class="input-group-addon">Жанры</span>
-            <select id="genres" multiple="multiple"></select>
+    <form id="filters">
+        <div class="col-xs-4">
+            <div class="input-group btn-group">
+                <span class="input-group-addon">Жанр</span>
+                <select id="genres" multiple="multiple">
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                </select>
+            </div>
         </div>
-        <div id="languages" class="btn-group btn-group-sm btn-group-justified col-xs-12 languages" data-toggle="buttons">
-            <label class="btn btn-primary"><input type="radio" name="language" value="*">Все</label>
+        <div class="col-xs-4">
+            <div class="input-group btn-group">
+                <span class="input-group-addon">Язык</span>
+                <select id="languages" multiple="multiple">
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                </select>
+            </div>
         </div>
     </form>
 </body>
