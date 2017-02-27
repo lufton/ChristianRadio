@@ -26,6 +26,7 @@ jQuery(function($) {
         maxHeight: 300,
         buttonWidth: '100%',
         onChange: function() {
+            backPage.currentGenres = $genres.val();
             updateFilters();
         }
     });
@@ -38,13 +39,31 @@ jQuery(function($) {
         maxHeight: 300,
         buttonWidth: '100%',
         onChange: function() {
+            backPage.currentLanguages = $languages.val();
             updateFilters();
         }
     });
     $stations.isotope({
-        itemSelector: 'li',
+        itemSelector: '.station',
         layoutMode: 'fitRows'
     });
+    $('body').mCustomScrollbar({
+        scrollButtons: {
+            enable: true,
+            scrollType: "stepped"
+        },
+        keyboard: {
+            scrollType: "stepped"
+        },
+        mouseWheel: {
+            scrollAmount: 108,
+            normalizeDelta: true
+        },
+        theme: "dark-2",
+        alwaysShowScrollbar: 1,
+        snapAmount: 108
+    });
+
     $genres.on('change', 'input', function() {
         backPage.currentGenre = this.value;
         $stations.isotope({filter: this.value});
@@ -54,9 +73,8 @@ jQuery(function($) {
         $stations.isotope({filter: this.value});
     });
     $stations.on('click', '.station', function() {
+        $('body').toggleClass('expanded');
         $(this).toggleClass('expanded');
-        $(this).parent().toggleClass('expanded');
-        $(this).parent().parent().toggleClass('expanded');
     });
     $stations.on('click', 'a.stream', function() {
         backPage.currentStation = $(this).data('station');
@@ -83,37 +101,37 @@ jQuery(function($) {
             '- **Description**: \n';
     };
     var populateGenres = function() {
-        var currentGenres = $genres.val() || backPage.currentGenres;
+        var currentGenres = $genres.val().length?$genres.val():backPage.currentGenres;
         $genres.find('option').remove();
 
         if (backPage && backPage.data && backPage.data.genres) {
             $.each(backPage.data.genres, function (genre, title) {
                 $genres.append('<option value=".genre-' + genre + '">' + title +'</option>');
             });
-            $genres.multiselect('rebuild');
+            $genres.multiselect('rebuild').multiselect('select', currentGenres);
         }
     };
     var populateLanguages = function() {
-        var currentLanguage = $languages.val() || backPage.currentLanguages;
+        var currentLanguages = $languages.val().length?$languages.val():backPage.currentLanguages;
         $languages.find('option').remove();
 
         if (backPage && backPage.data && backPage.data.languages) {
             $.each(backPage.data.languages, function (language, title) {
                 $languages.append('<option value=".lang-' + language + '">' + title +'</option>');
             });
-            $languages.multiselect('rebuild');
+            $languages.multiselect('rebuild').multiselect('select', currentLanguages);
         }
     };
     var populateStations = function() {
-        $stations.find('li.station').remove();
+        $stations.find('.station').remove();
         if (backPage && backPage.data && backPage.data.stations) {
             var stations = '';
             $.each(backPage.data.stations, function(id, station) {
-                stations += '<li id="' + id + '" class="station ' +
+                stations += '<div id="' + id + '" class="station img-rounded ' +
                     (id==backPage.currentStation && !backPage.paused()?'active ':'') +
                     $.map(station.genres, function(genre) { return 'genre-' + genre; }).join(' ') + ' ' +
                     $.map(station.languages, function(language) { return 'lang-' + language; }).join(' ') + '">' +
-                    '<aside><img src="icons/' + id + '.png" class="img-rounded" />' +
+                    '<aside><img src="icons/' + id + '.png" />' +
                     '<div class="metadata">' +
                         '<div class="btn-group-vertical btn-group-xs btn-block">' +
                             '<a href="https://github.com/lufton/ChristianRadio/issues/new?title=' + encodeURIComponent(station.title + ' not working') + '&body=' + encodeURIComponent(issueBody(station, 'Not working')) + '&labels[]=' + encodeURIComponent(station.title) + '&labels[]=' + encodeURIComponent('Not working') + '" target="_blank" class="btn btn-danger btn-xs col-xs-12">Не работает</a>' +
@@ -142,15 +160,64 @@ jQuery(function($) {
                     '</aside>' +
                     '<h1>' + station.title + '</h1>' +
                     '<a class="play playpause stream" href="' + station.streams[0].url + '" data-station="' + id + '"></a>' +
-                    '<div class="description">' + station.description || '' + '</div>' +
-                    '</li>';
+                    '<div class="description">' + (station.description || '') + '</div>' +
+                '</div>';
             });
             var $station = $(stations);
             $stations.append($station).isotope('appended', $station);
         }
     };
 
+    //Store frequently elements in variables
+    var $slider  = $('#slider'),
+        $tooltip = $('.tooltip'),
+        $volume = $('.volume');
+
+    //Hide the Tooltip at first
+    $tooltip.hide();
+
+    var updateSlider = function (value) {
+        $tooltip.css('left', value * 2 - 2.5).text(value);  //Adjust the tooltip accordingly
+
+        if (value == 0) $volume.css('background-position', '0 -100px');
+        else if(value <= 5) $volume.css('background-position', '0 0');
+        else if (value <= 25) $volume.css('background-position', '0 -25px');
+        else if (value <= 75) $volume.css('background-position', '0 -50px');
+        else $volume.css('background-position', '0 -75px');
+        backPage.setVolume(value);
+    };
+
+    //Call the Slider
+    $slider.slider({
+        //Config
+        range: "min",
+        //min: 1,
+        value: backPage.volume || 100,
+
+        start: function() {
+            $tooltip.fadeIn('fast');
+        },
+
+        //Slider Event
+        slide: function(event, ui) { //When the slider is sliding
+            updateSlider(ui.value);
+        },
+
+        change: function(event, ui) {
+            updateSlider(ui.value);
+        },
+
+        stop: function() {
+            $tooltip.fadeOut('fast');
+        }
+    });
+    $volume.click(function() {
+        $volume.prevVolume = $slider.slider('value') || $volume.prevVolume;
+        $slider.slider('value', $slider.slider('value') > 0?0:$volume.prevVolume);
+    });
+
     populateGenres();
     populateLanguages();
     populateStations();
+    updateFilters();
 });

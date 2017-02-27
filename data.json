@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "stations": {
     "nlradio": {
       "title": "Радио Новая Жизнь",
@@ -52,6 +52,7 @@
       "languages": [
         "ru",
         "uk",
+        "by",
         "en"
       ]
     },

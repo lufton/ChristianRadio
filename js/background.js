@@ -21,6 +21,11 @@ jQuery(function($) {
         audio.src = '';
     };
 
+    window.setVolume = function(volume) {
+        audio.volume = volume / 100;
+        window.volume = volume;
+    };
+
     var iconFrame = 0;
     var frameCount = 6;
     setInterval(function() {

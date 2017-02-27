@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Christian Radio</title>
-    <script src="jquery-3.1.1.min.js"></script>
-    <script src="isotope.pkgd.min.js"></script>
-    <script src="bootstrap.min.js"></script>
-    <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap-multiselect.css">
-    <link rel="stylesheet" href="popup.css">
-    <link rel="stylesheet" href="flags.css">
-    <script src="bootstrap-multiselect.js"></script>
-    <script src="popup.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-multiselect.css">
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="css/popup.css">
+    <link rel="stylesheet" href="css/flags.css">
+    <script src="js/bootstrap-multiselect.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/popup.js"></script>
 </head>
-<body>
-    <ul id="stations" class="col-xs-12"></ul>
+<body class="=noselect">
+    <div id="stations" class="col-xs-12"></div>
     <form id="filters">
         <div class="col-xs-4">
             <div class="input-group btn-group">
@@ -39,6 +42,11 @@
                     <option></option>
                 </select>
             </div>
+        </div>
+        <div class="col-xs-4">
+            <span class="tooltip"></span> <!-- Tooltip -->
+            <div id="slider"></div> <!-- the Slider -->
+            <span class="volume"></span> <!-- Volume -->
         </div>
     </form>
 </body>
